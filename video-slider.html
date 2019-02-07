@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+    	*{
+    padding:0;
+    margin:0;
+
+}
+
+video{
+    width:100%;
+    height:100%;
+    position:absolute;
+    object-fit:cover;
+    transition: all 1.2s linear;
+    z-index: -10;
+}
+
+.video1{
+    opacity:1;
+}
+.video2{
+    opacity:0;
+}
+.video3{
+    opacity:0;
+}
+
+.imagens{
+    opacity:0;
+    transition:opacity 2s;
+    width:100%;
+    height:100%;
+    position:absolute;
+    object-fit:cover;
+    z-index: -10;
+}
+
+.container {
+    width:100%;
+    height:100%;
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <video autoplay  id="video1" class="video1">
+        <source src="video/01.mp4" type="video/mp4">
+    </video>
+    <video   id="video2" class="video2">
+        <source src="video/02.mp4" type="video/mp4">
+    </video>
+    <video   id="video3" class="video3">
+        <source src="video/03.mp4" type="video/mp4">
+    </video>
+    <img src="https://source.unsplash.com/random?nature" class="imagens" id="imagem1">
+    <img src="https://source.unsplash.com/random?water" class="imagens" id="imagem2">
+</div>
+
+<script>
+
+var video1 = document.getElementById('video1');
+var video2 = document.getElementById('video2');
+var video3 = document.getElementById('video3');
+var imagen1 = document.getElementById('imagem1');
+
+function imgTransition(){
+    imagen1.style.opacity=0;
+    video1.play();
+    video1.style.opacity=1;
+}
+video1.onended = function(){
+    video2.play();
+    video1.style.opacity=0;
+    video2.style.opacity=1;
+}
+video2.onended = function(){
+    video2.style.opacity=0;
+    imagem2.style.opacity=1;
+    window.setTimeout(wat, 5000);
+}
+function wat(){
+    video3.play();
+    imagem2.style.opacity=0;
+    video3.style.opacity=1;
+}
+video3.onended = function(){
+    video3.style.opacity=0;
+    imagem1.style.opacity=1;
+    window.setTimeout(imgTransition, 5000);
+}
+
+</script>
+</body>
+</html>
